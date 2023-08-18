@@ -1,0 +1,74 @@
+folder('env') {
+    description('Folder containing all jobs for env')
+}
+folder('env/dev') {
+    description('Folder containing all dev env')
+}
+folder('env/prod') {
+    description('Folder containing all dev env')
+}
+folder('env/testing') {
+    description('Folder containing all dev env')
+}
+folder('application') {
+    description('Folder containing all dev env')
+}
+folder('application/dev') {
+    description('Folder containing all dev env')
+}
+folder('application/prod') {
+    description('Folder containing all dev env')
+}
+
+folder('application/testing') {
+    description('Folder containing all dev env')
+}
+folder('application/dev/CI-CD') {
+    description('Folder containing all dev env')
+}
+pipelineJob('application/dev/CI-CD/phpci') {
+  definition {
+    cpsScm {
+      scm {
+        git {
+          remote {
+            url("https://github.com/bhanukumari/docker.git")
+          }
+          branch('main')
+        }
+      }
+   scriptPath("JenkinsfileCI")
+  }
+}
+}
+pipelineJob('application/dev/CI-CD/phpcd') {
+  definition {
+    cpsScm {
+      scm {
+        git {
+          remote {
+            url("https://github.com/bhanukumari/docker.git")
+          }
+          branch('main')
+        }
+      }
+   scriptPath("JenkinsfileCD")
+  }
+}
+}
+pipelineJob('env/dev/infraci') {
+  definition {
+    cpsScm {
+      scm {
+        git {
+          remote {
+            url("https://github.com/bhanukumari/php-terraform.git")
+            
+          }
+          branch('main')
+        }
+      }
+      scriptPath("php-terraform/terraform/php/JenkinsfileCI")
+  }
+}
+}
